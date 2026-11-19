@@ -1,0 +1,4 @@
+skulpt 1.2.0
+https://registry.npmjs.org/skulpt/-/skulpt-1.2.0.tgz
+sha512-T0cv0sdSOXLlIJTuyXSeYJ3TFdWYSZfX2PcBLpRKrKZ3dTbVQXRMiYudSuko2xzcyMif47DS2ShatCwjCbsSsA==
+Gerado por scripts/vendorizar-skulpt.mjs. Não edite à mão.

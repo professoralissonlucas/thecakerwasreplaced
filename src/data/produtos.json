@@ -1,0 +1,29 @@
+[
+  {
+    "id": "pao",
+    "nome": "Pão",
+    "descricao": "Rápido e de graça. Nunca queima.",
+    "custo": 0,
+    "tempo": 3,
+    "tolerancia": null,
+    "venda": 1
+  },
+  {
+    "id": "biscoito",
+    "nome": "Biscoito",
+    "descricao": "Demora mais que o pão e vende bem melhor. Queima se ficar tempo demais no forno.",
+    "custo": 3,
+    "tempo": 15,
+    "tolerancia": 80,
+    "venda": 6
+  },
+  {
+    "id": "bolo",
+    "nome": "Bolo",
+    "descricao": "Caro e demorado, mas vale muito. Retirado antes da hora, sai cru.",
+    "custo": 15,
+    "tempo": 60,
+    "tolerancia": 80,
+    "venda": 40
+  }
+]

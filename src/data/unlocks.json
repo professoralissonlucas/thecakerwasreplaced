@@ -1,0 +1,137 @@
+[
+  {
+    "id": "comeco",
+    "nome": "Começo",
+    "descricao": "Uma cozinha com um forno só e os comandos básicos do robô.",
+    "custo": 0,
+    "inicial": true,
+    "requisitos": {},
+    "efeitos": [
+      { "tipo": "cozinha", "largura": 1, "altura": 1 },
+      { "tipo": "comandos", "nomes": ["assar", "retirar", "esperar", "dizer"] },
+      { "tipo": "embutidas", "nomes": ["print"] },
+      { "tipo": "sintaxe", "nos": ["Module", "Expr", "Call", "Name.leitura", "Constant", "UnaryOp.USub.literal"] },
+      { "tipo": "produto", "id": "pao" }
+    ],
+    "exemplo": "assar(\"pao\")\nesperar()\nesperar()\nretirar()"
+  },
+  {
+    "id": "repeticao",
+    "nome": "Repetição",
+    "descricao": "O robô aprende a repetir sozinho. Libera while, True e False.",
+    "custo": 10,
+    "requisitos": {},
+    "efeitos": [
+      { "tipo": "sintaxe", "nos": ["While", "Break", "Continue", "Pass", "NameConstant"] }
+    ],
+    "exemplo": "while True:\n    assar(\"pao\")\n    esperar()\n    esperar()\n    retirar()"
+  },
+  {
+    "id": "cozinha_3x1",
+    "nome": "Cozinha 3×1",
+    "descricao": "Mais dois fornos, um do lado do outro. Libera mover(Leste) e mover(Oeste).",
+    "custo": 30,
+    "requisitos": { "unlocks": ["repeticao"] },
+    "efeitos": [
+      { "tipo": "cozinha", "largura": 3, "altura": 1 },
+      { "tipo": "comandos", "nomes": ["mover", "Leste", "Oeste"] }
+    ],
+    "exemplo": "while True:\n    retirar()\n    assar(\"pao\")\n    mover(Leste)"
+  },
+  {
+    "id": "contagem",
+    "nome": "Contagem",
+    "descricao": "Repete um número certo de vezes. Libera for, in e range.",
+    "custo": 60,
+    "requisitos": { "unlocks": ["cozinha_3x1"] },
+    "efeitos": [
+      { "tipo": "sintaxe", "nos": ["For"] },
+      { "tipo": "embutidas", "nomes": ["range"] }
+    ],
+    "exemplo": "for i in range(3):\n    retirar()\n    assar(\"pao\")\n    mover(Leste)"
+  },
+  {
+    "id": "cozinha_3x3",
+    "nome": "Cozinha 3×3",
+    "descricao": "A cozinha ganha mais duas fileiras. Libera Norte, Sul, pos_x(), pos_y() e tamanho().",
+    "custo": 120,
+    "requisitos": { "unlocks": ["contagem"] },
+    "efeitos": [
+      { "tipo": "cozinha", "largura": 3, "altura": 3 },
+      { "tipo": "comandos", "nomes": ["Norte", "Sul", "pos_x", "pos_y", "tamanho"] }
+    ],
+    "exemplo": "while True:\n    for i in range(tamanho()):\n        for j in range(tamanho()):\n            retirar()\n            assar(\"pao\")\n            mover(Norte)\n        mover(Leste)"
+  },
+  {
+    "id": "sensores",
+    "nome": "Sensores",
+    "descricao": "O robô passa a olhar o forno antes de agir. Libera esta_pronto(), estado(), produto(), if, elif, else, not, and, or e as comparações.",
+    "custo": 200,
+    "requisitos": { "unlocks": ["cozinha_3x3"] },
+    "efeitos": [
+      { "tipo": "comandos", "nomes": ["esta_pronto", "estado", "produto"] },
+      { "tipo": "sintaxe", "nos": ["If", "Compare", "Eq", "NotEq", "Lt", "LtE", "Gt", "GtE", "BoolOp", "And", "Or", "UnaryOp.Not"] }
+    ],
+    "exemplo": "if pos_x() == 0:\n    dizer(\"coluna especial!\")\nif estado() == \"vazio\":\n    assar(\"pao\")"
+  },
+  {
+    "id": "biscoito",
+    "nome": "Biscoito",
+    "descricao": "Um produto novo: demora mais que o pão e vende bem melhor. Se ficar tempo demais no forno, queima.",
+    "custo": 300,
+    "requisitos": { "unlocks": ["sensores"] },
+    "efeitos": [
+      { "tipo": "produto", "id": "biscoito" }
+    ],
+    "exemplo": "while True:\n    for i in range(tamanho()):\n        for j in range(tamanho()):\n            retirar()\n            assar(\"biscoito\")\n            mover(Norte)\n        mover(Leste)"
+  },
+  {
+    "id": "memoria",
+    "nome": "Memória",
+    "descricao": "O robô ganha memória. Libera variáveis (=, +=), contas (+ - * / // %), moedas(), ticks() e as funções int, str, abs, min e max.",
+    "custo": 450,
+    "requisitos": { "unlocks": ["biscoito"] },
+    "efeitos": [
+      { "tipo": "comandos", "nomes": ["moedas", "ticks"] },
+      { "tipo": "sintaxe", "nos": ["Assign", "AugAssign", "Name.escrita", "BinOp", "Add", "Sub", "Mult", "Div", "FloorDiv", "Mod", "UnaryOp.USub"] },
+      { "tipo": "embutidas", "nomes": ["int", "str", "abs", "min", "max"] }
+    ],
+    "exemplo": "inicio = moedas()\nfor i in range(10):\n    assar(\"pao\")\n    esperar()\n    esperar()\n    retirar()\ndizer(moedas() - inicio)"
+  },
+  {
+    "id": "receitas",
+    "nome": "Receitas Próprias",
+    "descricao": "Crie seus próprios comandos com def, parâmetros e return.",
+    "custo": 700,
+    "requisitos": { "unlocks": ["memoria"] },
+    "efeitos": [
+      { "tipo": "sintaxe", "nos": ["FunctionDef", "arguments", "arg", "Return"] }
+    ],
+    "exemplo": "def cuidar(receita):\n    if esta_pronto():\n        retirar()\n    if estado() == \"vazio\":\n        assar(receita)\n\nwhile True:\n    for i in range(tamanho()):\n        for j in range(tamanho()):\n            cuidar(\"biscoito\")\n            mover(Norte)\n        mover(Leste)"
+  },
+  {
+    "id": "bolo",
+    "nome": "Bolo",
+    "descricao": "Caro e demorado, mas vale muito. Retirar antes da hora estraga o bolo: olhe o forno antes!",
+    "custo": 1000,
+    "requisitos": {
+      "unlocks": ["receitas"],
+      "estatisticas": { "produzidos.biscoito": 30 }
+    },
+    "efeitos": [
+      { "tipo": "produto", "id": "bolo" }
+    ],
+    "exemplo": "if esta_pronto():\n    retirar()\nif estado() == \"vazio\":\n    assar(\"bolo\")"
+  },
+  {
+    "id": "cozinha_4x4",
+    "nome": "Cozinha 4×4",
+    "descricao": "Mais fornos! Se o seu script usa tamanho(), ele já funciona na cozinha nova.",
+    "custo": 1500,
+    "requisitos": { "unlocks": ["bolo"] },
+    "efeitos": [
+      { "tipo": "cozinha", "largura": 4, "altura": 4 }
+    ],
+    "exemplo": "while True:\n    for i in range(tamanho()):\n        for j in range(tamanho()):\n            if esta_pronto():\n                retirar()\n            if estado() == \"vazio\":\n                assar(\"bolo\")\n            mover(Norte)\n        mover(Leste)"
+  }
+]

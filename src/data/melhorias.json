@@ -1,0 +1,32 @@
+[
+  {
+    "id": "forno_turbo",
+    "nome": "Forno Turbo",
+    "descricao": "Cada nível deixa os produtos prontos um pouco mais rápido.",
+    "custoInicial": 50,
+    "fatorCusto": 1.6,
+    "maximo": 5,
+    "apareceApos": "repeticao",
+    "efeito": { "tipo": "tempoMult", "valor": 0.9 }
+  },
+  {
+    "id": "receita_premium",
+    "nome": "Receita Premium",
+    "descricao": "Cada nível aumenta o preço de venda de todos os produtos.",
+    "custoInicial": 100,
+    "fatorCusto": 1.6,
+    "maximo": 5,
+    "apareceApos": "cozinha_3x1",
+    "efeito": { "tipo": "vendaSoma", "valor": 1 }
+  },
+  {
+    "id": "forno_isolado",
+    "nome": "Forno Isolado",
+    "descricao": "Cada nível faz os produtos aguentarem mais tempo prontos antes de queimar.",
+    "custoInicial": 120,
+    "fatorCusto": 1.6,
+    "maximo": 3,
+    "apareceApos": "biscoito",
+    "efeito": { "tipo": "toleranciaSoma", "valor": 5 }
+  }
+]
